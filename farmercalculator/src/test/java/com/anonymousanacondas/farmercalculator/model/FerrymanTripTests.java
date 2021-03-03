@@ -31,4 +31,14 @@ public class FerrymanTripTests {
         // assert
         assertEquals(.25, ferrymanTrip.getPricePerTrip());
     }
+
+    @Test 
+    public void whenICrossWith1Bag_thenPriceIsASingleTrip() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setAmount(1);
+
+        // assert
+        assertEquals(.25, ferrymanTrip.calculateTripPrice());
+    }
 }
