@@ -48,7 +48,7 @@ public class CornculatorControllerTest {
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
-        assertThat(result.getResponse().getContentAsString(), containsString("2.5"));
+        assertThat(result.getResponse().getContentAsString(), containsString("5.25"));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class CornculatorControllerTest {
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
-        assertThat(result.getResponse().getContentAsString(), containsString("1.25"));
+        assertThat(result.getResponse().getContentAsString(), containsString("2.75"));
     }
 }

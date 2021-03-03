@@ -21,6 +21,6 @@ public class FerrymanTrip {
     public double ferrymansPrice;
 
     public double calculateTripPrice() {
-        return this.Amount * this.pricePerTrip;
+        return ((this.Amount * this.pricePerTrip) * 2) + this.pricePerTrip;
     }
 }
