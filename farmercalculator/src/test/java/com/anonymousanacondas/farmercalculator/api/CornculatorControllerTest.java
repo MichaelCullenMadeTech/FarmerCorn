@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -49,6 +48,7 @@ public class CornculatorControllerTest {
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
+        assertThat(result.getResponse().getContentAsString(), containsString("2.5"));
     }
 
     @Test
@@ -63,10 +63,26 @@ public class CornculatorControllerTest {
             .content(ferrymansTripJson)
             .contentType(MediaType.APPLICATION_JSON))
             .andReturn();
-        MockHttpServletResponse response = result.getResponse();
 
         // assert
-        assertEquals(400, response.getStatus());
-        assertThat(response.getContentAsString(), containsString("Needs bags of corn!"));
+        assertEquals(400, result.getResponse().getStatus());
+        assertThat(result.getResponse().getContentAsString(), containsString("Needs bags of corn!"));
+    }
+
+    @Test
+    public void whenCornculateWithoutPricePerTrip_thenAutomaticallyCornculatedAt25p() throws Exception {
+        // arrange
+        ferrymansTripDto.setAmount(5);
+        ferrymansTripJson = new ObjectMapper().writeValueAsString(ferrymansTripDto);
+
+        // act
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(cornculatorApi)
+            .content(ferrymansTripJson)
+            .contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+
+        // assert
+        assertEquals(200, result.getResponse().getStatus());
+        assertThat(result.getResponse().getContentAsString(), containsString("1.25"));
     }
 }
