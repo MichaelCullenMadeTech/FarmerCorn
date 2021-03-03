@@ -1,8 +1,7 @@
-package com.anonymousanacondas.farmercalculator;
+package com.anonymousanacondas.farmercalculator.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.anonymousanacondas.farmercalculator.api.CornculatorController;
 import com.anonymousanacondas.farmercalculator.dto.CornBags;
 
 import org.junit.jupiter.api.Test;
