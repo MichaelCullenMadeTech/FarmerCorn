@@ -11,7 +11,7 @@ public class FerrymanTripTests {
     @Test
     public void whenICrossWith10Bags_thenPriceIs550p() {
         // arrange
-        double fiver = 5.5;
+        double fiver = 5.0;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
         ferrymanTrip.setAmount(10);
         ferrymanTrip.setPricePerTrip(.25);

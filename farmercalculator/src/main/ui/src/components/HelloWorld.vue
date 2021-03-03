@@ -36,7 +36,7 @@
       </div>
 
       <b-button class="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
-      <b-button class="next-btn" variant="success" @click="changeSection" v-if="section>1">Calculate</b-button>
+      <b-button class="next-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
     </div>
     </transition>
   </div>
@@ -63,6 +63,16 @@ export default {
       },
       changeSection: function() {
         this.section++;
+      },
+      calculate: function() {
+        const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: this.numberOfBags, pricePerTrip: this.tripCurrency })
+      };
+      fetch("http://localhost:8080/api/v1/cornculate", requestOptions)
+        .then(response => response.json())
+        .then(data => (this.quote = data));
       }
   },
   props: {

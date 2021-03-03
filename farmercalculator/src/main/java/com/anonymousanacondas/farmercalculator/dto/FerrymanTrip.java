@@ -8,7 +8,7 @@ import javax.validation.constraints.Min;
 public class FerrymanTrip {
     
     public FerrymanTrip() {
-        if (pricePerTrip == 0) {
+        if (pricePerTrip == 0.0) {
             pricePerTrip = .25;
         }
     }
@@ -22,11 +22,7 @@ public class FerrymanTrip {
 
     public double calculateTripPrice() {
         if (this.amount == 1) return this.priceThereAndHome();
-        return (this.amount * priceThereAndBackAgain()) + this.priceThereAndHome();
-    }
-
-    private double priceThereAndBackAgain() {
-        return this.pricePerTrip * 2;
+        return (this.amount * 2) * this.pricePerTrip;
     }
 
     private double priceThereAndHome() {
