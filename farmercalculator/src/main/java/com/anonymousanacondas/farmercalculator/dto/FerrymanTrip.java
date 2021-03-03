@@ -21,7 +21,11 @@ public class FerrymanTrip {
     public double ferrymansPrice;
 
     public double calculateTripPrice() {
-        if (this.amount == 1) return this.pricePerTrip;
-        return ((this.amount * this.pricePerTrip) * 2) + this.pricePerTrip;
+        if (this.amount == 1) return this.priceThereAndHome();
+        return ((this.amount * this.pricePerTrip) * 2) + this.priceThereAndHome();
+    }
+
+    private double priceThereAndHome() {
+        return this.pricePerTrip * 2;
     }
 }

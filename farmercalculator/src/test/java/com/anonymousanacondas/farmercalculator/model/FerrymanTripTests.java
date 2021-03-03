@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 public class FerrymanTripTests {
     
     @Test
-    public void whenICrossWith10Bags_thenPriceIs500p() {
+    public void whenICrossWith10Bags_thenPriceIs550p() {
         // arrange
-        double fiver = 5.25;
+        double fiver = 5.5;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
         ferrymanTrip.setAmount(10);
         ferrymanTrip.setPricePerTrip(.25);
@@ -39,6 +39,6 @@ public class FerrymanTripTests {
         ferrymanTrip.setAmount(1);
 
         // assert
-        assertEquals(.25, ferrymanTrip.calculateTripPrice());
+        assertEquals(.5, ferrymanTrip.calculateTripPrice());
     }
 }
