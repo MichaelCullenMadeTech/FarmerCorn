@@ -22,4 +22,13 @@ public class FerrymanTripTests {
         // assert
         assertEquals(twoFifty, totalPrice);
     }
+
+    @Test
+    public void whenIDoNotHaveAPricePerTrip_thenPriceIsDefaultedTo25p() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+
+        // assert
+        assertEquals(.25, ferrymanTrip.getPricePerTrip());
+    }
 }
