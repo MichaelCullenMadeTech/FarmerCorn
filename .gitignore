@@ -34,3 +34,7 @@ build/
 .vscode/
 .DS_Store
 farmercalculator/.factorypath
+farmercalculator/package.json
+farmercalculator/.factorypath
+farmercalculator/package-lock.json
+farmercalculator/src/main/ui/package-lock.json
