@@ -14,13 +14,13 @@ public class FerrymanTrip {
     }
 
     @Min(value = 1, message = "Needs bags of corn!")
-    public int Amount;
+    public int amount;
 
     public double pricePerTrip;
 
     public double ferrymansPrice;
 
     public double calculateTripPrice() {
-        return ((this.Amount * this.pricePerTrip) * 2) + this.pricePerTrip;
+        return ((this.amount * this.pricePerTrip) * 2) + this.pricePerTrip;
     }
 }
