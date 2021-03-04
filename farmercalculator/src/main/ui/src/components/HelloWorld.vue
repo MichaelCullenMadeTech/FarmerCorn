@@ -49,9 +49,12 @@
         <div class="validation-message" id="validation-message" v-if="!valid">
           Not possible - They'll eat each other!
         </div>
+        <div class="validation-gif" id="validation-gif" v-if="!valid">
+          <div style="width:16rem;height:10rem;"><iframe src="https://giphy.com/embed/7wq5iawqr1IZy" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+        </div>
       </div>
-      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
-      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
+      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<1">Next</b-button>
+      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>=1">Calculate</b-button>
     </div>
     </transition>
   </div>
@@ -196,5 +199,11 @@ display: block;
 
 .validation-message {
   color: red;
+}
+
+.validation-gif {
+    left: 1rem;
+    top: 55%;
+    position: absolute;
 }
 </style>
