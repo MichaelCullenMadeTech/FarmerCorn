@@ -51,14 +51,18 @@
             v-model="quote"
             placeholder="Cost of ferry?"/>
         </div>
+        Cost of meat:
+        <div class="trip-input">
+          <currency-input 
+            currency="GBP" 
+            class="trip-currency" 
+            v-model="meatCost"
+            placeholder="Cost of meat?"/>
+        </div>
       </div>
       <div class="directions"> 
         <div class="directions-content" id="directions-content" v-if="directions">
-          <ul id="directions-list">
-            <li v-for="direction in directions" :key="direction">
-              {{ direction }}
-            </li>
-          </ul>
+              {{ directions }}
         </div>
       </div>
       <div class="validation"> 
@@ -93,6 +97,7 @@ export default {
       priceOfTrip: 0,
       valid: true,
       directions: null,
+      meatCost: 0
     }
   },
   methods: {
@@ -124,13 +129,14 @@ export default {
             cornBags: this.numberOfBags, 
             geese: this.numberOfGeese,
             ferrymansCharge: this.tripCurrency, 
-            crocMeatPrice: this.crocMeatPrice
+            crocPrice: this.crocMeatPrice
           })
         };
         fetch("http://localhost:8080/api/v1/cornculate", requestOptions)
           .then(response => response.json())
           .then(data => (
             this.quote = data.ferrymansQuote, 
+            this.meatCost = data.priceCrocMeat,
             this.directions = data.instructions));
       }
   },
