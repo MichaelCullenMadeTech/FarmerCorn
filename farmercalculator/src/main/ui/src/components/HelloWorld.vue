@@ -53,8 +53,8 @@
           <div style="width:16rem;height:10rem;"><iframe src="https://giphy.com/embed/7wq5iawqr1IZy" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
         </div>
       </div>
-      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<1">Next</b-button>
-      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>=1">Calculate</b-button>
+      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
+      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
     </div>
     </transition>
   </div>

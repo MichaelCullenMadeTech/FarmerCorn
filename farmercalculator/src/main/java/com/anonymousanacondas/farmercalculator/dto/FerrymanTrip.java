@@ -13,13 +13,29 @@ public class FerrymanTrip {
 
     public double ferrymansQuote;
 
+    public double crocPrice;
+
+    public int amountOfCrocMeat;
+
+    public double totalCrocPrice;
+
     public double cornculateFerrymansQuote() {
+        this.amountOfCrocMeat = this.cornculateCrocMeat();
+        this.totalCrocPrice = this.cornculateCrocPrice();
+
         if (this.hasCorn() == this.hasGeese() && !this.equalAmounts()) {
             return cornculateCornGeeseRoundTripPlusEmptyTrip();
         }
         return cornculateCornGeeseRoundTrip();
     }
 
+    private int cornculateCrocMeat() {
+        return this.totalTrips() * 2;
+    }
+
+    private double cornculateCrocPrice() {
+        return this.amountOfCrocMeat * this.crocPrice;
+    }
 
 	public String getInstructions() {
 		if (!this.hasGeese() && !this.hasCorn()) {
@@ -43,13 +59,13 @@ public class FerrymanTrip {
         return unknownInstructions;
 	}
 
-    public String noItems = "Go to market. Go back home.";
-    public String justCornItems = "Take corn over to market side. Return empty handed to home side. If you still have corn repeat previous two steps, otherwise go back home.";
-    public String justGeeseItems = "Take geese over to market side. Return empty handed to home side. If you still have geese repeat previous two steps, otherwise go back home.";
-    public String oneOfEach = "Take corn over to market side. Return empty handed to home side. Take geese over to market side. Return to home side.";
-    public String twoCornOneGoose = "Take geese over to market side. Return empty handed to home side. Take corn #1 over to market side. Bring goose back to home side. Take corn #2 over to market. Return to home side. Bring goose over to market side. Return to home side";
-    public String twoGeeseOneCorn = "Take corn over to market side. Return empty handed to home side. Take goose #1 over market. Bring corn over to home side. Take goose # 2 over to market. Return to home side. Take corn over to market side. Return to home side";
-    public String unknownInstructions = "Cannot be done!";
+    public String noItems = "1. Go to market. 2. Go back home.";
+    public String justCornItems = "1. Take corn over to market side. 2. Return empty handed to home side. 3. If you still have corn repeat previous two steps, otherwise go back home.";
+    public String justGeeseItems = "1. Take geese over to market side. 2. Return empty handed to home side. 3. If you still have geese repeat previous two steps, otherwise go back home.";
+    public String oneOfEach = "1. Take corn over to market side. 2. Return empty handed to home side. 3. Take geese over to market side. 4. Return to home side.";
+    public String twoCornOneGoose = "1. Take geese over to market side. 2. Return empty handed to home side. 3. Take corn #1 over to market side. 4. Bring goose back to home side. 5. Take corn #2 over to market. 6. Return to home side. 7. Bring goose over to market side. 8. Return to home side.";
+    public String twoGeeseOneCorn = "1. Take corn over to market side. 2. Return empty handed to home side. 3. Take goose #1 over market. 4. Bring corn over to home side. 5. Take goose # 2 over to market. 6. Return to home side. 7. Take corn over to market side. 8. Return to home side";
+    public String unknownInstructions = "1. Cannot be done!";
 
     private boolean hasCorn() {
         return this.cornBags > 0;

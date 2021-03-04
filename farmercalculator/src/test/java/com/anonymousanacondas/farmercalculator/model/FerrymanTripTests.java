@@ -216,4 +216,36 @@ public class FerrymanTripTests {
         // assert
         assertEquals(ferrymanTrip.unknownInstructions, result);
     }
+
+    @Test
+    public void whenIHave5bagsAnd5Geese_thenINeed20CrocMeat() {
+        // arrange
+        int twenty = 20;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(5);
+        ferrymanTrip.setCornBags(5);
+
+        // act
+        ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(twenty, ferrymanTrip.getAmountOfCrocMeat());
+    }
+
+    @Test
+    public void whenIHave20CrocMeats_andItIs5pPerMeat_thenTheCrocPriceShouldBeAQuid() {
+        // arrange
+        double quid = 1.0;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(5);
+        ferrymanTrip.setCornBags(5);
+        ferrymanTrip.setCrocPrice(.05);
+
+        // act
+        ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(quid, ferrymanTrip.getTotalCrocPrice());
+        
+    }
 }
