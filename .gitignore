@@ -3,7 +3,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/src/main/ui/node_modules/
 
 ### STS ###
 .apt_generated
@@ -34,7 +33,7 @@ build/
 .vscode/
 .DS_Store
 farmercalculator/.factorypath
-farmercalculator/package.json
 farmercalculator/.factorypath
 farmercalculator/package-lock.json
 farmercalculator/src/main/ui/package-lock.json
+farmercalculator/src/main/ui/node_modules/
