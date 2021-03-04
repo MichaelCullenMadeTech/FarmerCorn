@@ -37,7 +37,7 @@ public class CornculatorControllerTest {
     @Test
     public void cornculate() throws Exception {  
         // arrange
-        ferrymansTripDto.setAmount(10);
+        ferrymansTripDto.setCornBags(10);
         ferrymansTripDto.setPricePerTrip(.25);
 
         // act
@@ -49,23 +49,9 @@ public class CornculatorControllerTest {
     }
 
     @Test
-    public void whenCornculateWithoutBagsOfCorn_thenNoBagsOfCornValidationMessage() throws Exception {
-        // arrange
-        ferrymansTripDto.setAmount(0);
-        ferrymansTripDto.setPricePerTrip(.25);
-
-        // act
-        MvcResult result = post(createJsonBody(ferrymansTripDto));
-
-        // assert
-        assertEquals(400, result.getResponse().getStatus());
-        assertThat(result.getResponse().getContentAsString(), containsString("Needs bags of corn!"));
-    }
-
-    @Test
     public void whenCornculateWithoutPricePerTrip_thenAutomaticallyCornculatedAt25p() throws Exception {
         // arrange
-        ferrymansTripDto.setAmount(5);
+        ferrymansTripDto.setCornBags(5);
 
         // act
         MvcResult result = post(createJsonBody(ferrymansTripDto));

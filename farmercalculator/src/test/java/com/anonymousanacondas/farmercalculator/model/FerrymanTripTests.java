@@ -13,7 +13,7 @@ public class FerrymanTripTests {
         // arrange
         double fiver = 5.0;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
-        ferrymanTrip.setAmount(10);
+        ferrymanTrip.setCornBags(10);
         ferrymanTrip.setPricePerTrip(.25);
 
         // act
@@ -39,7 +39,7 @@ public class FerrymanTripTests {
     public void whenICrossWith1Bag_thenPriceIsASingleTrip() {
         // arrange
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
-        ferrymanTrip.setAmount(1);
+        ferrymanTrip.setCornBags(1);
 
         // assert
         assertEquals(.5, ferrymanTrip.calculateTripPrice());

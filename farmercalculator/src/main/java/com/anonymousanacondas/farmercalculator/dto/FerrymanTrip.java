@@ -7,15 +7,16 @@ import javax.validation.constraints.Min;
 @Data
 public class FerrymanTrip {
 
-    @Min(value = 1, message = "Needs bags of corn!")
-    public int amount;
+    public int cornBags;
+
+    public int geese;
 
     public double pricePerTrip;
 
     public double ferrymansPrice;
 
     public double calculateTripPrice() {
-        return this.amount * this.roundTrip();
+        return this.cornBags * this.roundTrip();
     }
 
     private double roundTrip() {
