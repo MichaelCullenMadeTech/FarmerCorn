@@ -38,10 +38,27 @@ public class FerrymanTripTests {
     @Test 
     public void whenICrossWith1Bag_thenPriceIsASingleTrip() {
         // arrange
+        double fiftyPee = 0.5;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
         ferrymanTrip.setCornBags(1);
 
         // assert
-        assertEquals(.5, ferrymanTrip.cornculateFerrymansQuote());
+        assertEquals(fiftyPee, ferrymanTrip.cornculateFerrymansQuote());
     }
+
+    @Test
+    public void whenICrossWith1BagAnd1Goose_thenPriceIsTwoRoundTrips() {
+        // arrange
+        double quid = 1.0;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setCornBags(1);
+        ferrymanTrip.setGeese(1);
+
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(quid, result);
+    }
+
 }
