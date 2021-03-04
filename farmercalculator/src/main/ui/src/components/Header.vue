@@ -1,7 +1,7 @@
 <template>
     <section class="header">
-        <div class="header-text">CORN-CULATOR</div>
-        <img class="header-img" alt="Vue logo" src="../assets/Logo.svg">
+        <!-- <div class="header-text">CORN-CULATOR</div> -->
+        <img class="header-img" alt="Vue logo" src="../assets/1.png">
     </section>
 </template>
 
@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     font-family: 'Akaya Kanadaka', cursive;
-    padding: 4rem;
+    /* padding: 1rem; */
     background-color: rgb(93 224 230);
 }
 .header-text {
@@ -27,6 +27,6 @@
     color: rgb(50 112 8);
 }
 img {
-    height: 6rem;
+    height: 16rem;
 }
 </style>

@@ -5,15 +5,21 @@
     <div class="form-area">
       <b-progress :value="section" :max="2" class="mb-3" variant="info"></b-progress>
       <div class="form-input bags" v-if="section==0">
-        Number of bags:
+        Number of bags of Corn:
         <b-form-input class="bags-input" v-model="numberOfBags" placeholder="How many bags"></b-form-input>
         <div class="bags-btns">
-          <b-button class="bags-btn bags-btn__increment" variant="info" @click="incrementCounter">+</b-button>
-          <b-button class="bags-btn" variant="info" @click="decrementCounter">-</b-button>
+          <b-button class="bags-btn bags-btn__increment" id="bags-increase"  variant="info" @click="incrementBagCounter">+</b-button>
+          <b-button class="bags-btn" variant="info" id="bags-decrease" @click="decrementBagCounter">-</b-button>
+        </div>
+        Number of Geese:
+        <b-form-input class="bags-input" v-model="numberOfGeese" placeholder="How many geese"></b-form-input>
+        <div class="bags-btns">
+          <b-button class="bags-btn bags-btn__increment" id="geese-increase" variant="info" @click="incrementGeeseCounter">+</b-button>
+          <b-button class="bags-btn" id="geese-decrease" variant="info" @click="decrementGeeseCounter">-</b-button>
         </div>
       </div>
 
-      <div class="form-input trip" v-if="section==1">
+      <div class="form-input trip" id="trip-form" v-if="section==1">
         How much is a single trip:
         <div class="trip-input">
           <currency-input 
@@ -24,7 +30,7 @@
         </div>
       </div>
 
-      <div class="form-input quote" v-if="section==2">
+      <div class="form-input quote" id="quote-form" v-if="section==2">
         Cost of ferry:
         <div class="trip-input">
           <currency-input 
@@ -34,9 +40,13 @@
             placeholder="Cost of ferry?"/>
         </div>
       </div>
-
-      <b-button class="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
-      <b-button class="next-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
+      <div class="validation"> 
+        <div class="validation-message" id="validation-message" v-if="!valid">
+          Not possible - They'll eat each other!
+        </div>
+      </div>
+      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
+      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
     </div>
     </transition>
   </div>
@@ -49,20 +59,33 @@ export default {
     return {
       section: 0,
       numberOfBags: 0,
+      numberOfGeese: 0,
       tripCurrency: 0.0,
       quote: 0,
       priceOfTrip: 0,
+      valid: true
     }
   },
   methods: {
-      incrementCounter: function() {
+      incrementBagCounter: function() {
           this.numberOfBags += 1;
       },
-      decrementCounter: function() {
+      decrementBagCounter: function() {
           if (this.numberOfBags >0) this.numberOfBags -= 1;
       },
+      incrementGeeseCounter: function() {
+          this.numberOfGeese += 1;
+      },
+      decrementGeeseCounter: function() {
+          if (this.numberOfGeese >0) this.numberOfGeese -= 1;
+      },
       changeSection: function() {
-        this.section++;
+        if( this.numberOfBags > 1 && this.numberOfGeese > 1 || this.numberOfBags == 1 && this.numberOfGeese > 2 || this.numberOfBags > 2 && this.numberOfGeese == 1 ) {
+          this.valid = false;
+        } else {
+          this.section++;
+          this.valid = true;
+        }
       },
       calculate: function() {
         const requestOptions = {
@@ -116,21 +139,21 @@ display: block;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;  
 }
 .form-area {
-  margin: 3rem auto;
+  margin: 1rem auto;
   max-width: 24rem;
-  height: 24rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .form-input {
-    height: 100%;
-    padding: 2rem 0;
+    height: 50%;
 }
 .bags-input {
   margin-bottom: 1rem;
 }
 .bags-btns {
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-evenly;
 }
@@ -159,5 +182,13 @@ display: block;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;  
+}
+.validation {
+  height: 2rem;
+  width: 100%;
+}
+
+.validation-message {
+  color: red;
 }
 </style>
