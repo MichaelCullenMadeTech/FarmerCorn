@@ -19,7 +19,7 @@ public class CornculatorController {
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Double> postCornBags(
         @RequestBody @Valid FerrymanTrip ferrymanTripDto) {
-        double result = ferrymanTripDto.calculateTripPrice();
+        double result = ferrymanTripDto.cornculateFerrymansQuote();
         return ResponseEntity.ok(result);
     }
     

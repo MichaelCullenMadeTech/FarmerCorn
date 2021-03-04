@@ -38,7 +38,7 @@ public class CornculatorControllerTest {
     public void cornculate() throws Exception {  
         // arrange
         ferrymansTripDto.setCornBags(10);
-        ferrymansTripDto.setPricePerTrip(.25);
+        ferrymansTripDto.setFerrymansCharge(.25);
 
         // act
         MvcResult result = post(createJsonBody(ferrymansTripDto));

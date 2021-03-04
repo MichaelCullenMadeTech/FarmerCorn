@@ -14,10 +14,10 @@ public class FerrymanTripTests {
         double fiver = 5.0;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
         ferrymanTrip.setCornBags(10);
-        ferrymanTrip.setPricePerTrip(.25);
+        ferrymanTrip.setFerrymansCharge(.25);
 
         // act
-        double totalPrice = ferrymanTrip.calculateTripPrice();
+        double totalPrice = ferrymanTrip.cornculateFerrymansQuote();
 
         // assert
         assertEquals(fiver, totalPrice);
@@ -29,10 +29,10 @@ public class FerrymanTripTests {
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
 
         // act
-        ferrymanTrip.calculateTripPrice();
+        ferrymanTrip.cornculateFerrymansQuote();
 
         // assert
-        assertEquals(.25, ferrymanTrip.getPricePerTrip());
+        assertEquals(.25, ferrymanTrip.getFerrymansCharge());
     }
 
     @Test 
@@ -42,6 +42,6 @@ public class FerrymanTripTests {
         ferrymanTrip.setCornBags(1);
 
         // assert
-        assertEquals(.5, ferrymanTrip.calculateTripPrice());
+        assertEquals(.5, ferrymanTrip.cornculateFerrymansQuote());
     }
 }
