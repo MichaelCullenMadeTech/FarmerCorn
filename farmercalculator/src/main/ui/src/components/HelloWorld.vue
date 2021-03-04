@@ -54,7 +54,11 @@
       </div>
       <div class="directions"> 
         <div class="directions-content" id="directions-content" v-if="directions">
-          {{ directions }}
+          <ul id="directions-list">
+            <li v-for="direction in directions" :key="direction">
+              {{ direction }}
+            </li>
+          </ul>
         </div>
       </div>
       <div class="validation"> 
@@ -158,7 +162,7 @@ a {
   padding: 1rem;
 }
 currency-input {
-display: block;
+    display: block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
@@ -237,5 +241,11 @@ display: block;
     display: flex;
     justify-content: center;
     height: 16rem;
+}
+
+#directions-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 </style>
