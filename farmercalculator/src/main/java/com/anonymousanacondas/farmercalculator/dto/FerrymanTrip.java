@@ -14,7 +14,7 @@ public class FerrymanTrip {
     public double ferrymansQuote;
 
     public double cornculateFerrymansQuote() {
-        return this.cornBags * this.roundTrip();
+        return (this.cornBags + this.geese) * this.roundTrip();
     }
 
     private double roundTrip() {
