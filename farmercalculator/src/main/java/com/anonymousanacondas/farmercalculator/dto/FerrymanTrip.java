@@ -6,12 +6,6 @@ import javax.validation.constraints.Min;
 
 @Data
 public class FerrymanTrip {
-    
-    public FerrymanTrip() {
-        if (pricePerTrip == 0.0) {
-            pricePerTrip = .25;
-        }
-    }
 
     @Min(value = 1, message = "Needs bags of corn!")
     public int amount;
@@ -21,11 +15,11 @@ public class FerrymanTrip {
     public double ferrymansPrice;
 
     public double calculateTripPrice() {
-        if (this.amount == 1) return this.priceThereAndHome();
-        return (this.amount * 2) * this.pricePerTrip;
+        return this.amount * this.roundTrip();
     }
 
-    private double priceThereAndHome() {
+    private double roundTrip() {
+        if (this.pricePerTrip == 0.0) this.pricePerTrip = .25;
         return this.pricePerTrip * 2;
     }
 }

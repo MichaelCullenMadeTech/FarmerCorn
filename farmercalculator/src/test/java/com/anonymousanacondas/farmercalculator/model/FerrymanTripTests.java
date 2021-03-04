@@ -28,6 +28,9 @@ public class FerrymanTripTests {
         // arrange
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
 
+        // act
+        ferrymanTrip.calculateTripPrice();
+
         // assert
         assertEquals(.25, ferrymanTrip.getPricePerTrip());
     }

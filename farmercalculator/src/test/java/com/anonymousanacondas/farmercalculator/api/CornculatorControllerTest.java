@@ -1,10 +1,11 @@
 package com.anonymousanacondas.farmercalculator.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class CornculatorControllerTest {
 
     private final String cornculatorApi = "/api/v1/cornculate";
     private FerrymanTrip ferrymansTripDto;
-    String ferrymansTripJson;
 
-    public CornculatorControllerTest() {
+    @BeforeEach
+    public void setup() {
         ferrymansTripDto = new FerrymanTrip();
     }
     
@@ -38,13 +39,9 @@ public class CornculatorControllerTest {
         // arrange
         ferrymansTripDto.setAmount(10);
         ferrymansTripDto.setPricePerTrip(.25);
-        ferrymansTripJson = new ObjectMapper().writeValueAsString(ferrymansTripDto);
 
         // act
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(cornculatorApi)
-            .content(ferrymansTripJson)
-            .contentType(MediaType.APPLICATION_JSON))
-            .andReturn();
+        MvcResult result = post(createJsonBody(ferrymansTripDto));
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
@@ -56,13 +53,9 @@ public class CornculatorControllerTest {
         // arrange
         ferrymansTripDto.setAmount(0);
         ferrymansTripDto.setPricePerTrip(.25);
-        ferrymansTripJson = new ObjectMapper().writeValueAsString(ferrymansTripDto);
 
         // act
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(cornculatorApi)
-            .content(ferrymansTripJson)
-            .contentType(MediaType.APPLICATION_JSON))
-            .andReturn();
+        MvcResult result = post(createJsonBody(ferrymansTripDto));
 
         // assert
         assertEquals(400, result.getResponse().getStatus());
@@ -73,16 +66,35 @@ public class CornculatorControllerTest {
     public void whenCornculateWithoutPricePerTrip_thenAutomaticallyCornculatedAt25p() throws Exception {
         // arrange
         ferrymansTripDto.setAmount(5);
-        ferrymansTripJson = new ObjectMapper().writeValueAsString(ferrymansTripDto);
 
         // act
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(cornculatorApi)
-            .content(ferrymansTripJson)
-            .contentType(MediaType.APPLICATION_JSON))
-            .andReturn();
+        MvcResult result = post(createJsonBody(ferrymansTripDto));
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
         assertThat(result.getResponse().getContentAsString(), containsString("2.5"));
+    }
+
+    private String createJsonBody(FerrymanTrip ferrymanTrip) {
+        try {
+            return new ObjectMapper().writeValueAsString(ferrymanTrip);
+        }
+        catch (Exception exception) {
+            fail(exception.getMessage());
+            return null;
+        }
+    }
+
+    private MvcResult post(String jsonBody) {
+        try {
+            return mockMvc.perform(MockMvcRequestBuilders.post(cornculatorApi)
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        }
+        catch (Exception exception) {
+            fail(exception.getMessage());
+            return null;
+        }
     }
 }
