@@ -72,8 +72,8 @@
           <img class="header-img" alt="Vue logo" src="../assets/Yewwww.png">
         </div>
       </div>
-      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<1">Next</b-button>
-      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>=1">Calculate</b-button>
+      <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
+      <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
     </div>
     </transition>
   </div>

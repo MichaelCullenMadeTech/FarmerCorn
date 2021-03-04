@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.Data;
-
 @RequestMapping("api/v1/cornculate")
 @RestController
 public class CornculatorController {
@@ -29,13 +27,10 @@ public class CornculatorController {
         String instructions = ferrymanTripDto.getInstructions();
         response.setInstructions(instructions);
 
-        return ResponseEntity.ok(response);
-    }
+        response.setPriceCrocMeat(ferrymanTripDto.getTotalCrocPrice());
+        response.setAmountCrocMeat(ferrymanTripDto.getAmountOfCrocMeat());
 
-    @Data
-    class FerrymanResponse {
-        double ferrymansQuote;
-        String instructions;
+        return ResponseEntity.ok(response);
     }
     
 }

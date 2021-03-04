@@ -39,18 +39,32 @@ public class CornculatorControllerTest {
         // arrange
         ferrymansTripDto.setCornBags(10);
         ferrymansTripDto.setFerrymansCharge(.25);
+        ferrymansTripDto.setCrocPrice(.05);;
 
         // act
         MvcResult result = post(createJsonBody(ferrymansTripDto));
 
         // assert
         assertEquals(200, result.getResponse().getStatus());
-        assertThat(result.getResponse().getContentAsString(), containsString("5.0"));
+        FerrymanResponse objResponse = backToObject(result.getResponse().getContentAsString());
+        assertEquals(5.0, objResponse.getFerrymansQuote());
+        assertEquals(1.0, objResponse.getPriceCrocMeat());
+        assertEquals(20, objResponse.getAmountCrocMeat());
     }
 
     private String createJsonBody(FerrymanTrip ferrymanTrip) {
         try {
             return new ObjectMapper().writeValueAsString(ferrymanTrip);
+        }
+        catch (Exception exception) {
+            fail(exception.getMessage());
+            return null;
+        }
+    }
+
+    private FerrymanResponse backToObject(String jsonResponse) {
+        try {
+            return new ObjectMapper().readValue(jsonResponse, FerrymanResponse.class);
         }
         catch (Exception exception) {
             fail(exception.getMessage());
