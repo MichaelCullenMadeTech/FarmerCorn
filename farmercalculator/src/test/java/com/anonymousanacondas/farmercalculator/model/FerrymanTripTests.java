@@ -24,7 +24,7 @@ public class FerrymanTripTests {
     }
 
     @Test
-    public void whenIDoNotHaveAPricePerTrip_thenPriceIsDefaultedTo25p() {
+    public void whenIDoNotHaveAPricePerTrip_thenPriceIsDefaultedTo25Pee() {
         // arrange
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
 
@@ -36,18 +36,35 @@ public class FerrymanTripTests {
     }
 
     @Test 
-    public void whenICrossWith1Bag_thenPriceIsASingleTrip() {
+    public void whenICrossWith1Bag_thenPriceIsFiftyPee() {
         // arrange
         double fiftyPee = 0.5;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
         ferrymanTrip.setCornBags(1);
 
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
         // assert
-        assertEquals(fiftyPee, ferrymanTrip.cornculateFerrymansQuote());
+        assertEquals(fiftyPee, result);
     }
 
     @Test
-    public void whenICrossWith1BagAnd1Goose_thenPriceIsTwoRoundTrips() {
+    public void whenICrossWith1Goose_thenPriceIsFiftyPee() {
+        // arrange
+        double fiftyPee = 0.5;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(1);
+
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(fiftyPee, result);
+    }
+
+    @Test
+    public void whenICrossWith1BagAnd1Goose_thenPriceIsAQuid() {
         // arrange
         double quid = 1.0;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
@@ -59,6 +76,51 @@ public class FerrymanTripTests {
 
         // assert
         assertEquals(quid, result);
+    }
+
+    @Test
+    public void whenICrossWith2BagsAnd1Goose_thenPriceIsTwoQuid() {
+        // arrange
+        double twoQuid = 2.0;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setCornBags(2);
+        ferrymanTrip.setGeese(1);
+
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(twoQuid, result);
+    }
+
+    @Test
+    public void whenICrossWith1BagAnd2Geese_thenPriceIsTwoQuid() {
+        // arrange
+        double twoQuid = 2.0;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setCornBags(1);
+        ferrymanTrip.setGeese(2);
+
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(twoQuid, result);
+    }
+
+    @Test
+    public void whenICrossWithNoBagsAndNoGeese_thenPriceIsFiftyPee() {
+        // arrange
+        double fiftyPee = 0.5;
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setCornBags(0);
+        ferrymanTrip.setGeese(0);
+
+        // act
+        double result = ferrymanTrip.cornculateFerrymansQuote();
+
+        // assert
+        assertEquals(fiftyPee, result);
     }
 
 }

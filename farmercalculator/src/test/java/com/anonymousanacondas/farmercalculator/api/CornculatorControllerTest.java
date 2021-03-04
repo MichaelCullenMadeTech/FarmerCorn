@@ -35,7 +35,7 @@ public class CornculatorControllerTest {
     }
     
     @Test
-    public void cornculate() throws Exception {  
+    public void whenIPostToCornculate_thenCornculated() throws Exception {  
         // arrange
         ferrymansTripDto.setCornBags(10);
         ferrymansTripDto.setFerrymansCharge(.25);
@@ -46,19 +46,6 @@ public class CornculatorControllerTest {
         // assert
         assertEquals(200, result.getResponse().getStatus());
         assertThat(result.getResponse().getContentAsString(), containsString("5.0"));
-    }
-
-    @Test
-    public void whenCornculateWithoutPricePerTrip_thenAutomaticallyCornculatedAt25p() throws Exception {
-        // arrange
-        ferrymansTripDto.setCornBags(5);
-
-        // act
-        MvcResult result = post(createJsonBody(ferrymansTripDto));
-
-        // assert
-        assertEquals(200, result.getResponse().getStatus());
-        assertThat(result.getResponse().getContentAsString(), containsString("2.5"));
     }
 
     private String createJsonBody(FerrymanTrip ferrymanTrip) {

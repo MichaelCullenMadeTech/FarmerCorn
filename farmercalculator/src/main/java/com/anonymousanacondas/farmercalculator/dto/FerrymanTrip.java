@@ -14,7 +14,35 @@ public class FerrymanTrip {
     public double ferrymansQuote;
 
     public double cornculateFerrymansQuote() {
-        return (this.cornBags + this.geese) * this.roundTrip();
+        if (this.hasCorn() == this.hasGeese() && !this.equalAmounts()) {
+            return cornculateCornGeeseRoundTripPlusEmptyTrip();
+        }
+        return cornculateCornGeeseRoundTrip();
+    }
+
+    private boolean hasCorn() {
+        return this.cornBags > 0;
+    }
+
+    private boolean hasGeese() {
+        return this.geese > 0;
+    }
+    
+    private boolean equalAmounts() {
+        return this.cornBags == this.geese;
+    }
+
+    private double cornculateCornGeeseRoundTrip() {
+        return totalTrips() * this.roundTrip();
+    }
+
+    private int totalTrips() {
+        int totalTrips = this.cornBags + this.geese;
+        return totalTrips == 0 ? 1 : totalTrips;
+    }
+
+    private double cornculateCornGeeseRoundTripPlusEmptyTrip() {
+        return this.cornculateCornGeeseRoundTrip() + this.roundTrip();
     }
 
     private double roundTrip() {
