@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class FerrymanTripTests {
     
     @Test
-    public void whenICrossWith10Bags_thenPriceIs550p() {
+    public void whenICrossWith10Bags_thenPriceIsAFiver() {
         // arrange
         double fiver = 5.0;
         FerrymanTrip ferrymanTrip = new FerrymanTrip();
