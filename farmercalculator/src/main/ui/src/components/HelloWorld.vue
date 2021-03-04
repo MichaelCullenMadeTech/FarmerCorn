@@ -40,6 +40,11 @@
             placeholder="Cost of ferry?"/>
         </div>
       </div>
+      <div class="directions"> 
+        <div class="directions-content" id="directions-content" v-if="directions">
+          {{ directions }}
+        </div>
+      </div>
       <div class="validation"> 
         <div class="validation-message" id="validation-message" v-if="!valid">
           Not possible - They'll eat each other!
@@ -63,7 +68,8 @@ export default {
       tripCurrency: 0.0,
       quote: 0,
       priceOfTrip: 0,
-      valid: true
+      valid: true,
+      directions: null,
     }
   },
   methods: {
@@ -141,7 +147,7 @@ display: block;
 .form-area {
   margin: 1rem auto;
   max-width: 24rem;
-  height: 30rem;
+  min-height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
