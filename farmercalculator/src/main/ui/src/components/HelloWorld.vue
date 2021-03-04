@@ -43,21 +43,25 @@
       </div>
 
       <div class="form-input quote" id="quote-form" v-if="section==2">
-        Cost of ferry:
-        <div class="trip-input">
-          <currency-input 
-            currency="GBP" 
-            class="trip-currency" 
-            v-model="quote"
-            placeholder="Cost of ferry?"/>
+        <div class="ferry">
+          Cost of ferry:
+          <div class="trip-input">
+            <currency-input 
+              currency="GBP" 
+              class="trip-currency" 
+              v-model="quote"
+              placeholder="Cost of ferry?"/>
+          </div>
         </div>
-        Cost of meat:
-        <div class="trip-input">
-          <currency-input 
-            currency="GBP" 
-            class="trip-currency" 
-            v-model="meatCost"
-            placeholder="Cost of meat?"/>
+        <div class="meat">
+          Cost of meat:
+          <div class="trip-input">
+            <currency-input 
+              currency="GBP" 
+              class="trip-currency" 
+              v-model="meatCost"
+              placeholder="Cost of meat?"/>
+          </div>
         </div>
       </div>
       <div class="directions"> 
@@ -206,6 +210,9 @@ currency-input {
   margin-right: 1rem;
 }
 .trip {
+  margin-bottom: 1rem;
+}
+.ferry {
   margin-bottom: 1rem;
 }
 .trip-input {
