@@ -123,4 +123,97 @@ public class FerrymanTripTests {
         assertEquals(fiftyPee, result);
     }
 
+    @Test
+    public void whenICrossWithNoBagsAndNoGeese() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.noItems, result);
+    }
+
+    @Test 
+    public void whenICrossWithJustCorn() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setCornBags(10);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.justCornItems, result);
+    }
+
+    @Test 
+    public void whenICrossWithJustGeese() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(10);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.justGeeseItems, result);
+    }
+
+    @Test
+    public void whenICrossWithOneBagAndOneGoose() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(1);
+        ferrymanTrip.setCornBags(1);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.oneOfEach, result);
+    }
+
+    @Test
+    public void whenICrossWithOneBagAndTwoGeese() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(2);
+        ferrymanTrip.setCornBags(1);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.twoGeeseOneCorn, result);
+    }
+
+    @Test
+    public void whenICrossWithTwoBagsAndOneGoose() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(1);
+        ferrymanTrip.setCornBags(2);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.twoCornOneGoose, result);
+    }
+
+    @Test
+    public void whenIHaveNoIdea_thenUnknownInstructions() {
+        // arrange
+        FerrymanTrip ferrymanTrip = new FerrymanTrip();
+        ferrymanTrip.setGeese(100);
+        ferrymanTrip.setCornBags(100);
+
+        // act
+        String result = ferrymanTrip.getInstructions();
+
+        // assert
+        assertEquals(ferrymanTrip.unknownInstructions, result);
+    }
 }

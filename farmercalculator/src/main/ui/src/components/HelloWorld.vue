@@ -100,11 +100,17 @@ export default {
         const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: this.numberOfBags, pricePerTrip: this.tripCurrency })
+        body: JSON.stringify({ 
+            cornBags: this.numberOfBags, 
+            geese: this.numberOfGeese,
+            ferrymansCharge: this.tripCurrency 
+          })
       };
       fetch("http://localhost:8080/api/v1/cornculate", requestOptions)
         .then(response => response.json())
-        .then(data => (this.quote = data));
+        .then(data => (
+          this.quote = data.ferrymansQuote, 
+          this.directions = data.instructions));
       }
   },
   props: {
