@@ -128,8 +128,6 @@ export default {
           .then(data => (
             this.quote = data.ferrymansQuote, 
             this.directions = data.instructions));
-
-        this.section++;
       }
   },
   props: {
