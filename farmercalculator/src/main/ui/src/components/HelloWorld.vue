@@ -20,13 +20,25 @@
       </div>
 
       <div class="form-input trip" id="trip-form" v-if="section==1">
-        How much is a single trip:
-        <div class="trip-input">
-          <currency-input 
-            currency="GBP" 
-            class="trip-currency" 
-            v-model="tripCurrency" 
-            placeholder="How much is a single trip?"/>
+        <div class="trip">
+          How much is a single trip:
+          <div class="trip-input">
+            <currency-input 
+              currency="GBP" 
+              class="trip-currency" 
+              v-model="tripCurrency" 
+              placeholder="How much is a single trip?"/>
+          </div>
+        </div>
+        <div class="meat">
+          How much is croc meat today:
+          <div class="meat-input">
+            <currency-input 
+              currency="GBP" 
+              class="trip-currency" 
+              v-model="crocMeatPrice" 
+              placeholder="How much is a single trip?"/>
+          </div>
         </div>
       </div>
 
@@ -52,6 +64,9 @@
         <div class="validation-gif" id="validation-gif" v-if="!valid">
           <div style="width:16rem;height:10rem;"><iframe src="https://giphy.com/embed/7wq5iawqr1IZy" width="100%" height="100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
         </div>
+        <div class="validation-gif" id="validation-gif" v-if="directions">
+          <img class="header-img" alt="Vue logo" src="../assets/Yewwww.png">
+        </div>
       </div>
       <b-button class="next-btn" id="next-btn" variant="success" @click="changeSection" v-if="section<=1">Next</b-button>
       <b-button class="next-btn" id="calc-btn" variant="success" @click="calculate" v-if="section>1">Calculate</b-button>
@@ -68,7 +83,8 @@ export default {
       section: 0,
       numberOfBags: 0,
       numberOfGeese: 0,
-      tripCurrency: 0.0,
+      tripCurrency: 0.25,
+      crocMeatPrice: 0.05,
       quote: 0,
       priceOfTrip: 0,
       valid: true,
@@ -103,14 +119,17 @@ export default {
         body: JSON.stringify({ 
             cornBags: this.numberOfBags, 
             geese: this.numberOfGeese,
-            ferrymansCharge: this.tripCurrency 
+            ferrymansCharge: this.tripCurrency, 
+            crocMeatPrice: this.crocMeatPrice
           })
-      };
-      fetch("http://localhost:8080/api/v1/cornculate", requestOptions)
-        .then(response => response.json())
-        .then(data => (
-          this.quote = data.ferrymansQuote, 
-          this.directions = data.instructions));
+        };
+        fetch("http://localhost:8080/api/v1/cornculate", requestOptions)
+          .then(response => response.json())
+          .then(data => (
+            this.quote = data.ferrymansQuote, 
+            this.directions = data.instructions));
+
+        this.section++;
       }
   },
   props: {
@@ -178,6 +197,9 @@ display: block;
 .bags-btn__increment {
   margin-right: 1rem;
 }
+.trip {
+  margin-bottom: 1rem;
+}
 .trip-input {
     display: flex;
     align-items: baseline;
@@ -208,8 +230,12 @@ display: block;
 }
 
 .validation-gif {
-    left: 1rem;
-    top: 55%;
+    top: 0;
+    left: 0;
     position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 16rem;
 }
 </style>
