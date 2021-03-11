@@ -47,6 +47,7 @@
           Cost of ferry:
           <div class="trip-input">
             <currency-input 
+              disabled="disabled"
               currency="GBP" 
               class="trip-currency" 
               v-model="quote"
@@ -57,6 +58,7 @@
           Cost of meat:
           <div class="trip-input">
             <currency-input 
+              disabled="disabled"
               currency="GBP" 
               class="trip-currency" 
               v-model="meatCost"
